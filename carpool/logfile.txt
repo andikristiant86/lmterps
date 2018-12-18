@@ -1,0 +1,9 @@
+[10/Mar/2016:17:00:35] (upload_carpool) 
+		insert into m_parkir_file (file,nmfile,parkir_id) 
+		values ('','',7071);
+		
+		insert into m_parkir (barcode,date,file,nmfile,status,create_by,create_date,latlon) 
+		values ('',str_to_date('', '%Y%m%d%H%i%s'),'','','',null,CURRENT_TIMESTAMP(),null)
+		insert into m_parkir (id,barcode,date,status,create_by,create_date,latlon,barcode_1) 
+		values (7071,'',str_to_date('', '%Y%m%d%H%i%s'),'',null,CURRENT_TIMESTAMP(),null,'')
+[10/Mar/2016:17:00:35] (upload_carpool) sukses
