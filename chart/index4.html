@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title id='Description'>Dashboard Notice</title>
+    <meta name="description" content="Notice Esar Online" />
+    <link rel="stylesheet" href="./jqwidgets/styles/jqx.base.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />	
+    <script type="text/javascript" src="./scripts/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="./jqwidgets/jqxdraw.js"></script>
+    <script type="text/javascript" src="./jqwidgets/jqxchart.core.js"></script>
+    <script type="text/javascript" src="./scripts/demos.js"></script>
+    <script type="text/javascript" src="./jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // prepare chart data as an array            
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'PIC' },
+                    { name: 'notice1' },
+                    { name: 'notice2' },
+                    { name: 'notice3' },
+					{ name: 'notice4' },
+					{ name: 'notice5' }
+                ],
+                url: 'notice_admin.php'
+            };
+
+            var dataAdapter = new $.jqx.dataAdapter(source, { async: false, autoBind: true, loadError: function (xhr, status, error) { alert('Error loading "' + source.url + '" : ' + error); } });
+            var settings_v = {
+                title: "Notice Admin",
+                description: "Esar Online ERPS",
+                showLegend: true,
+                enableAnimations: true,
+                padding: { left: 5, top: 5, right: 5, bottom: 5 },
+                titlePadding: { left: 0, top: 0, right: 0, bottom: 10 },
+                source: dataAdapter,
+                xAxis:
+                {
+                    position: 'top',
+                    dataField: 'PIC',
+                    gridLines: { visible: true }
+                },
+                colorScheme: 'scheme02',
+                seriesGroups:
+                    [
+                        {
+                            type: 'column',
+                            columnsGapPercent: 50,
+                            valueAxis:
+                            {
+                                title: { text: 'Amount(Rp)' }
+                            },
+                            series: [
+                                    {
+                                        dataField: 'notice1',
+                                        displayText: 'Notice to print',
+                                        labels: {
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+                                    },
+                                    {
+                                        dataField: 'notice2',
+                                        displayText: 'Send ESAR to Regional',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice3',
+                                        displayText: 'Esar Ongoing to Regional',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice4',
+                                        displayText: 'ESAR Ongoing to HQ',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice5',
+                                        displayText: 'Submit ESAR to AR',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    }
+                            ]
+                        }
+
+                    ]
+            };
+			
+									
+			var source_v2 =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'pic' },
+                    { name: 'notice1' },
+                    { name: 'notice2' },
+                    { name: 'notice3' }
+                ],
+                url: 'notice_rpm.php?v=2'
+            };
+
+            var dataAdapter2 = new $.jqx.dataAdapter(source_v2, { async: false, autoBind: true, loadError: function (xhr, status, error) { alert('Error loading "' + source.url + '" : ' + error); } });
+            
+			
+			var settings_v2 = {
+                title: "Notice RPM",
+                description: "Esar Online ERPS",
+                showLegend: true,
+                enableAnimations: true,
+                padding: { left: 5, top: 5, right: 5, bottom: 5 },
+                titlePadding: { left: 0, top: 0, right: 0, bottom: 10 },
+                source: dataAdapter2,
+                xAxis:
+                {
+                    position: 'top',
+                    dataField: 'pic',
+                    gridLines: { visible: true }
+                },
+                colorScheme: 'scheme02',
+                seriesGroups:
+                    [
+                        {
+                            type: 'column',
+                            columnsGapPercent: 50,
+                            valueAxis:
+                            {
+                                title: { text: 'Amount (Rp)' }
+                            },
+                            series: [
+                                    {
+                                        dataField: 'notice1',
+                                        displayText: 'Waiting Sign RTL',
+                                        labels: {
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+                                    },
+                                    {
+                                        dataField: 'notice2',
+                                        displayText: 'Waiting Sign PM',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice3',
+                                        displayText: 'Send Esar to HQ',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    }
+                            ]
+                        }
+
+                    ]
+            };
+
+			
+			var source_v3 =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'pic' },
+                    { name: 'notice1' },
+                    { name: 'notice2' },
+                    { name: 'notice3' },
+					{ name: 'notice4' }
+                ],
+                url: 'gdp_dept_2010.php?v=2'
+            };
+
+            var dataAdapter3 = new $.jqx.dataAdapter(source_v3, { async: false, autoBind: true, loadError: function (xhr, status, error) { alert('Error loading "' + source.url + '" : ' + error); } });
+            
+			
+			var settings_v3 = {
+                title: "Notice Finance",
+                description: "Esar Online ERPS",
+                showLegend: true,
+                enableAnimations: true,
+                padding: { left: 5, top: 5, right: 5, bottom: 5 },
+                titlePadding: { left: 0, top: 0, right: 0, bottom: 10 },
+                source: dataAdapter3,
+                xAxis:
+                {
+                    position: 'top',
+                    dataField: 'pic',
+                    gridLines: { visible: true }
+                },
+                colorScheme: 'scheme02',
+                seriesGroups:
+                    [
+                        {
+                            type: 'column',
+                            columnsGapPercent: 50,
+                            valueAxis:
+                            {
+                                title: { text: 'Amount (Rp)' }
+                            },
+                            series: [
+                                    {
+                                        dataField: 'notice1',
+                                        displayText: 'ESAR Acceptance by AR',
+                                        labels: {
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+                                    },
+                                    {
+                                        dataField: 'notice2',
+                                        displayText: 'Submit ESAR to SCS',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice3',
+                                        displayText: 'Waiting VS Approval',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice4',
+                                        displayText: 'Submit Invoice',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    }
+                            ]
+                        }
+
+                    ]
+            };
+			
+			var source_v4 =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'pic' },
+                    { name: 'notice1' },
+                    { name: 'notice2' },
+                    { name: 'notice3' },
+					{ name: 'notice4' }
+                ],
+                url: 'notice_admin_project.php?v=2'
+            };
+
+            var dataAdapter4 = new $.jqx.dataAdapter(source_v4, { async: false, autoBind: true, loadError: function (xhr, status, error) { alert('Error loading "' + source.url + '" : ' + error); } });
+            
+			var settings_v4 = {
+                title: "Notice Admin Project",
+                description: "Esar Online ERPS",
+                showLegend: true,
+                enableAnimations: true,
+                padding: { left: 5, top: 5, right: 5, bottom: 5 },
+                titlePadding: { left: 0, top: 0, right: 0, bottom: 10 },
+                source: dataAdapter4,
+                xAxis:
+                {
+                    position: 'top',
+                    dataField: 'pic',
+                    gridLines: { visible: true }
+                },
+                colorScheme: 'scheme02',
+                seriesGroups:
+                    [
+                        {
+                            type: 'column',
+                            columnsGapPercent: 50,
+                            valueAxis:
+                            {
+                                title: { text: 'Amount (Rp)' }
+                            },
+                            series: [
+                                    {
+                                        dataField: 'notice1',
+                                        displayText: 'PO Outstanding',
+                                        labels: {
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+                                    },
+                                    {
+                                        dataField: 'notice2',
+                                        displayText: 'Not LMT Site',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice3',
+                                        displayText: 'PO Expired',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    },
+                                    {
+                                        dataField: 'notice4',
+                                        displayText: 'PO Release',
+                                        labels: { 
+                                            visible: true,
+                                            verticalAlignment: 'top',
+                                            offset: { x: 0, y: -20 }
+                                        },
+                                        formatFunction: function (value) {
+                                            return Math.round(value / 1000) + 'K';
+                                        }
+
+                                    }
+                            ]
+                        }
+
+                    ]
+            };
+			
+            // setup the chart
+            $('#chartContainer').jqxChart(settings_v);
+			
+			$('#chartContainer1').jqxChart(settings_v2);
+			$('#chartContainer2').jqxChart(settings_v3);
+			
+			$('#chartContainer3').jqxChart(settings_v4);
+        });
+    </script>
+</head>
+<body class='default' style="background-color:powderblue;">
+	<table width="100%">
+		<tr> 
+			<td width="50%"> 
+				<div id='chartContainer' style="width: 100%; height: 360px;">
+				</div>
+			</td>
+			<td width="50%"> 
+					<div id='chartContainer1' style="width: 100%; height: 360px;">
+					</div>
+			</td>
+		</tr>
+		<tr> 
+			<td width="50%"> 
+				<div id='chartContainer2' style="width: 100%; height: 360px;">
+				</div>
+			</td>
+			<td width="50%"> 
+				<div id='chartContainer3' style="width: 100%; height: 360px;">
+				</div>	
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
